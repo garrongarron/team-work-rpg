@@ -1,0 +1,20 @@
+body {
+    background-color: rebeccapurple;
+    height: 100vh;
+}
+
+.popupMessageHide {
+    position: fixed;
+    width: 100px;
+    height: 100px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all .1s;
+    opacity: 0;
+}
+
+.popupMessageShow {
+    opacity: 1;
+    transform: translate(-50%, -90%);
+}

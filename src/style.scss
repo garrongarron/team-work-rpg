@@ -1,0 +1,664 @@
+@font-face {
+    font-family: 'gotic';
+    src: url("./fonts/Luckiest_Guy/LuckiestGuy-Regular.ttf");
+}
+
+@font-face {
+    font-family: 'cursi';
+    src: url("./fonts/Kaushan_Script/KaushanScript-Regular.ttf");
+}
+
+@font-face {
+    font-family: 'charm';
+    src: url("./fonts/Charm/Charm-Bold.ttf");
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    list-style: none;
+    overflow: hidden;
+    user-select: none;
+    cursor: url('/src/images/cursor/cursor-wow.png'), auto;
+}
+
+.hide {
+    display: none;
+}
+
+.landing {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    background-color: black;
+    top: 0;
+    // background-image: url('src/images/Portada.png');
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.samu-games {
+    position: absolute;
+    background-color: black;
+    line-height: 100vh;
+    width: 100vw;
+    text-align: center;
+    color: white;
+    top: 0;
+    cursor: pointer;
+    font-family: 'gotic';
+    font-size: 5em;
+}
+
+.play-now {
+    position: absolute;
+    font-size: 5em;
+    bottom: 1em;
+    right: 2em;
+    background-color: black;
+    border-radius: 30px;
+    padding: 25px;
+    font-family: sans-serif;
+    color: white;
+    border: 15px solid yellow;
+    user-select: none;
+    cursor: pointer;
+    font-family: 'gotic';
+    padding-top: .5em;
+}
+
+
+/* Context menu */
+
+.display-context-menu {
+    background-color: gray;
+    position: fixed;
+    padding: .1em;
+    cursor: pointer;
+}
+
+.display-context-menu>div {
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    border-top: 1px solid white;
+    border-left: 1px solid white;
+    padding: .2em .5em;
+}
+
+.display-context-menu>div:hover {
+    color: #ccc;
+}
+
+
+/* sound controlls*/
+
+.sound-control {
+    position: fixed;
+    top: 0;
+    left: 0;
+    font-size: 1em;
+    color: gray;
+    padding: 1em;
+    transition: all 1s;
+    cursor: pointer;
+}
+
+.sound-down:hover,
+.sound-up:hover {
+    color: red;
+}
+
+.message-container {
+    position: fixed;
+    right: 0;
+    top: 0;
+    font-family: 'gotic';
+    font-size: 5em;
+    color: yellow;
+    text-shadow: 2px 2px 4px black;
+    padding: 1em;
+}
+
+.fade-node {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0);
+    transition: all 1s;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.fade-to-black {
+    background-color: rgba(0, 0, 0, 1);
+    transition: all 1s;
+}
+
+.glove {
+    /* The second value here is a fallback. */
+    cursor: url('/src/images/cursor/cursor-wow.png'), auto;
+    /* You may need coordinates to adjust the pointer
+       for example, the custom cursor is circular and you want
+       the middle to be where you click */
+    // cursor: url(target.svg) 15 15, move;
+}
+
+@import './scenes/characterSelector/characterSelector.scss';
+.backpack {
+    background: #333;
+    position: fixed;
+    bottom: 1.5em;
+    right: 1.5em;
+    cursor: url('/src/images/cursor/cursor-wow.png'), auto;
+    font-family: sans-serif;
+    &>div {
+        width: 100%;
+        border: 1px solid gray;
+        text-align: center;
+        color: white;
+        display: flex;
+        div {
+            width: 100%;
+        }
+        .close {
+            background-color: red;
+            color: white;
+            width: 1em;
+        }
+    }
+    &>ul {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: .1em;
+        padding: .1em;
+        li {
+            width: 2em;
+            height: 2em;
+            border: 1px solid gray;
+            position: relative;
+            img {
+                width: 100%;
+                z-index: 0;
+            }
+            div {
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                color: yellow;
+                z-index: 1;
+                font-size: .9em;
+                font-weight: bolder;
+                text-shadow: 0px 0px 2px red;
+            }
+        }
+    }
+    .wallet {
+        width: 100%;
+        ul {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-flow: row;
+            width: 100%;
+            li {
+                line-height: 1.5em;
+                display: flex;
+                justify-content: space-around;
+                flex-flow: row;
+                align-items: center;
+                font-size: .6em;
+            }
+            li::after {
+                content: "";
+                width: 1em;
+                height: 1em;
+                border-radius: 50%;
+                padding-left: .1em;
+                display: block;
+                margin-left: .2rem;
+            }
+            li.bronze::after {
+                background-color: rgb(224, 74, 5);
+            }
+            li.silver::after {
+                background-color: rgb(194, 194, 194);
+            }
+            li.gold::after {
+                background-color: rgb(238, 204, 14);
+            }
+        }
+    }
+}
+
+.quest {
+    background: #333;
+    position: fixed;
+    top: 1.5em;
+    left: 1.5em;
+    cursor: url('/src/images/cursor/cursor-wow.png'), auto;
+    font-family: sans-serif;
+    width: 10em;
+    color: white;
+    &>div {
+        width: 100%;
+        border: 1px solid gray;
+        text-align: center;
+        color: white;
+        display: flex;
+        div {
+            width: 100%;
+        }
+        .close {
+            background-color: red;
+            color: white;
+            width: 1em;
+        }
+    }
+    .page {
+        text-align: left;
+        height: 15em;
+        font-size: .75em;
+        font-style: italic;
+        overflow-y: scroll;
+        padding: .5em;
+        cursor: url('/src/images/cursor/cursor-wow.png'), auto;
+    }
+    .page::-webkit-scrollbar {
+        cursor: url('/src/images/cursor/cursor-wow.png'), auto;
+        background-color: #ccc;
+    }
+    .page::-webkit-scrollbar-thumb {
+        background-color: green;
+    }
+    .footer {
+        width: 100;
+        background-color: rgb(65, 44, 14);
+        text-align: center;
+        padding: .3em;
+        display: flex;
+        justify-content: space-between;
+        button {
+            border-radius: 5px;
+            background-color: brown;
+            border: 1px solid black;
+            padding: 0 .2em;
+            color: yellow;
+            cursor: url('/src/images/cursor/cursor-wow.png'), auto;
+        }
+        button:hover {
+            color: yellow;
+            border: 1px solid white;
+        }
+    }
+}
+
+.loot {
+    background: #333;
+    position: fixed;
+    top: 1.5em;
+    left: 1.5em;
+    cursor: url('/src/images/cursor/cursor-wow.png'), auto;
+    font-family: sans-serif;
+    width: 10em;
+    color: white;
+    &>div {
+        width: 100%;
+        border: 1px solid gray;
+        text-align: center;
+        color: white;
+        display: flex;
+        div {
+            width: 100%;
+        }
+        .close {
+            background-color: red;
+            color: white;
+            width: 1em;
+        }
+    }
+    ul {
+        background-color: #333;
+        padding: .1em .5em;
+        li {
+            padding: .2em;
+            border: 1px solid #666;
+            border-radius: 5px;
+            color: white;
+            margin-top: .1em;
+            margin-bottom: .1em;
+        }
+    }
+}
+
+.hotkey {
+    background: #333;
+    position: fixed;
+    bottom: 0em;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: url('/src/images/cursor/cursor-wow.png'), auto;
+    font-family: sans-serif;
+    color: white;
+    ul {
+        display: flex;
+        grid-template-columns: repeat(12, 1fr);
+        grid-gap: .1em;
+        padding: .1em;
+        li {
+            width: 2rem;
+            height: 2rem;
+            border: 1px solid gray;
+            text-align: right;
+            font-size: .5em;
+            padding: .2rem;
+        }
+    }
+    .experience {
+        width: 100%;
+        background-color: purple;
+        height: .25em;
+    }
+}
+
+.quest-resume {
+    background: #333;
+    position: fixed;
+    top: 1.5em;
+    right: 1.5em;
+    cursor: url('/src/images/cursor/cursor-wow.png'), auto;
+    font-family: sans-serif;
+    width: 10em;
+    color: white;
+    &>div {
+        width: 100%;
+        border: 1px solid gray;
+        text-align: center;
+        color: white;
+        display: flex;
+        div {
+            width: 100%;
+        }
+        .close {
+            background-color: red;
+            color: white;
+            width: 1em;
+        }
+    }
+    ul {
+        background-color: #333;
+        padding: .1em .5em;
+        li {
+            padding: .2em;
+            border: 1px solid #666;
+            border-radius: 5px;
+            color: white;
+            margin-top: .1em;
+            margin-bottom: .1em;
+        }
+    }
+}
+
+.chat {
+    background: #333;
+    position: fixed;
+    bottom: 1.5em;
+    left: 1.5em;
+    cursor: url('/src/images/cursor/cursor-wow.png'), auto;
+    font-family: sans-serif;
+    width: 10em;
+    color: white;
+    &>div {
+        width: 100%;
+        border: 1px solid gray;
+        text-align: center;
+        color: white;
+        display: flex;
+        div {
+            width: 100%;
+        }
+        .close {
+            background-color: red;
+            color: white;
+            width: 1em;
+        }
+    }
+    ul {
+        background-color: #333;
+        padding: .1em .5em;
+        li {
+            padding: .2em;
+            border: 1px solid #666;
+            border-radius: 5px;
+            color: white;
+            margin-top: .1em;
+            margin-bottom: .1em;
+        }
+    }
+}
+
+.wear {
+    background: #333;
+    position: fixed;
+    top: 1.5em;
+    left: 1.5em;
+    cursor: url('/src/images/cursor/cursor-wow.png'), auto;
+    font-family: sans-serif;
+    width: fit-content;
+    color: white;
+    &>div {
+        width: 100%;
+        border: 1px solid gray;
+        text-align: center;
+        color: white;
+        display: flex;
+        div {
+            width: 100%;
+        }
+        .close {
+            background-color: red;
+            color: white;
+            width: 1em;
+        }
+    }
+    section {
+        display: flex;
+        .right {
+            border-left: 1px solid gray;
+            margin-left: .1em;
+            ul {
+                padding: .1em;
+                li {
+                    border: 1px solid gray;
+                    width: 100%;
+                    height: 1.5em;
+                    margin-top: .1em;
+                    margin-bottom: .1em;
+                    line-height: 1.5em;
+                    padding-left: .2em;
+                    padding-right: .2em;
+                }
+            }
+        }
+        .left {
+            display: flex;
+            ul {
+                padding: .1em;
+                li {
+                    border: 1px solid gray;
+                    width: 1.5em;
+                    height: 1.5em;
+                    margin: .1em 0em;
+                }
+            }
+            .image {
+                width: 100px;
+                height: 100px;
+                background-color: purple;
+            }
+        }
+        .right {
+            display: flex;
+        }
+    }
+}
+
+.spellbook {
+    background: #333;
+    position: fixed;
+    top: 1.5em;
+    left: 1.5em;
+    cursor: url('/src/images/cursor/cursor-wow.png'), auto;
+    font-family: sans-serif;
+    width: fit-content;
+    color: white;
+    &>div {
+        width: 100%;
+        border: 1px solid gray;
+        text-align: center;
+        color: white;
+        display: flex;
+        div {
+            width: 100%;
+        }
+        .close {
+            background-color: red;
+            color: white;
+            width: 1em;
+        }
+    }
+    ul {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: .1em;
+        padding: .1em;
+        li {
+            border: 1px solid gray;
+            width: auto;
+            height: 1.5em;
+            margin: .3em;
+            padding: .2em;
+        }
+    }
+}
+
+body>img {
+    position: fixed;
+    width: 60px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.mission-accomplished {
+    position: fixed;
+    width: 50vw;
+    height: 50vh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 0, 0, .8);
+    color: yellow;
+    font-family: 'gotic';
+    text-align: center;
+    line-height: 50vh;
+    font-size: 3em;
+    border-radius: 30px;
+    box-shadow: 2px 2px 4px white;
+    // transform: all 2s ease-in;
+    transition-property: all;
+    transition-duration: .5s;
+    opacity: 1;
+}
+
+.shrink-out {
+    opacity: 0;
+    width: 10vw;
+    height: 10vh;
+    top: 90%;
+    left: 90%;
+    line-height: 10vh;
+    font-size: .3em;
+}
+
+
+/********************/
+
+.popupMessageHide {
+    position: fixed;
+    width: 250px;
+    text-align: center;
+    height: 100px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all .1s;
+    opacity: 0;
+    font-family: 'gotic';
+    font-size: 2em;
+    color: antiquewhite;
+    text-shadow: 0px 0px 4px black;
+}
+
+.popupMessageShow {
+    opacity: 1;
+    transform: translate(-50%, -90%);
+}
+
+.help {
+    font-family: 'charm';
+    width: 40vw;
+    height: 80vh;
+    position: fixed;
+    left: -30vw;
+    top: 10vh;
+    transition: all .1s;
+    background-image: url('/src/images/papers.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-size: 2em;
+    &>div {
+        position: relative;
+        height: 80vh;
+        .text {
+            padding: 1em;
+            text-align: center;
+            color: #333;
+            text-shadow: 0 0 2px orange;
+        }
+        .close {
+            top: 0%;
+            right: 0%;
+            width: 1.5em;
+            height: 1.5em;
+            position: absolute;
+            border-radius: 50%;
+            margin: 10px;
+            color: white;
+            border: 1px solid white;
+            box-shadow: 0px 0px 4px black;
+            line-height: 1.25em;
+            font-size: 18px;
+            text-align: center;
+            transition: .25s all;
+            background-color: rgba(255, 0, 0, 0);
+        }
+        .close:hover {
+            background-color: rgba(255, 0, 0, 1);
+        }
+        .footer {
+            position: absolute;
+            bottom: 0%;
+            width: 100%;
+            font-size: .5em;
+            text-align: center;
+            padding: 1em;
+        }
+    }
+}
+
+.help-in {
+    left: 10vw;
+}
